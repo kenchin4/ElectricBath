@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com; form-action 'none'; base-uri 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>電浴Go!!</title>
 <meta name="description" content="全国1146軒の電気風呂を、自分の足で回って記録した地図。都道府県や強さの目安で絞り込み、訪問チェックで訪問率が出ます。">
@@ -15,6 +15,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Oswald:wght@400;600&display=swap">
+<!--GA4-BEGIN-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4RX2TGNQPV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4RX2TGNQPV', { anonymize_ip: true });
+</script>
+<!--GA4-END-->
 </head>
 <body>
 <style>
@@ -514,6 +523,7 @@ footer p{margin:4px 0}
     <p id="closed-foot"></p>
     <p id="closed-note"></p>
     <p>掲載内容は訪問時点のもので、営業状況・設備は変わることがあります。おでかけ前に各店の最新情報をご確認ください。</p>
+    <p data-ga-privacy><a href="./privacy.html">プライバシーポリシー　→</a></p>
   </div>
 </footer>
 
@@ -792,5 +802,145 @@ init();
 
 
 
+<!--GA4-TRACK-BEGIN-->
+<script>
+/* 電浴Go!! サイト内行動の計測。gtag が無い環境（ローカル確認など）では何もしない。 */
+(function(){
+  function send(name, params){
+    try{
+      if(typeof window.gtag === "function"){ window.gtag("event", name, params || {}); }
+      (window.__ebEvents = window.__ebEvents || []).push([name, params || {}]);
+    }catch(e){}
+  }
+  window.ebTrack = send;
+
+  var $ = function(id){ return document.getElementById(id); };
+  var txt = function(n){ return n ? (n.textContent || "").replace(/\s+/g," ").trim() : ""; };
+  function resultCount(){
+    var m = txt($("count")).match(/(\d+)/);
+    return m ? Number(m[1]) : undefined;
+  }
+
+  /* --- 絞り込みの「変化」を拾う: クリック/選択の直後に状態を見比べる --- */
+  function snap(){
+    var sel = $("pref-select");
+    var on = [];
+    Array.prototype.forEach.call(document.querySelectorAll(".chip.on"), function(b){
+      var t = txt(b);
+      if(t && t !== "すべて" && t !== "こだわらない"){ on.push(t); }
+    });
+    return { pref: sel ? (sel.value || "") : "", chips: on.join(" / ") };
+  }
+  var prev = snap();
+  function diff(source){
+    setTimeout(function(){
+      var now = snap();
+      if(now.pref !== prev.pref || now.chips !== prev.chips){
+        send("filter_change", {
+          pref: now.pref || "(指定なし)",
+          filters: now.chips || "(なし)",
+          source: source,
+          result_count: resultCount()
+        });
+      }
+      prev = now;
+    }, 80);
+  }
+
+  document.addEventListener("click", function(e){
+    var t = e.target;
+    if(!t || !t.closest) return;
+
+    /* Googleマップを開いた */
+    var a = t.closest("a");
+    if(a && (a.getAttribute("href") || "").indexOf("google.com/maps") >= 0){
+      var card = t.closest(".card");
+      send("open_gmap", {
+        shop: txt(card && card.querySelector("h3")).slice(0,100),
+        pref: txt(card && card.querySelector(".pref"))
+      });
+      return;
+    }
+    /* サイト内の別ページ / 外部リンク */
+    if(a){
+      var href = a.getAttribute("href") || "";
+      if(/(contact|profile|privacy)\.html/.test(href)){
+        send("page_link", { link_text: txt(a).slice(0,60), link_url: href });
+        return;
+      }
+      if(/^https?:/.test(href) && a.hostname && a.hostname !== location.hostname){
+        send("outbound_click", { link_text: txt(a).slice(0,60), link_url: href });
+        return;
+      }
+      if(/^mailto:/.test(href)){ send("mail_link", {}); return; }
+    }
+
+    /* 日本地図の都道府県 */
+    var svgp = t.closest && t.closest("#japan path");
+    if(svgp){
+      var ttl = svgp.querySelector && svgp.querySelector("title");
+      send("map_pref_click", { pref: txt(ttl).split(/[\s\u3000]/)[0] });
+      diff("map"); return;
+    }
+    if(t.closest("#pref-rank")){ diff("ranking"); return; }
+    if(t.closest("#pw-dist")){ diff("power_dist"); return; }
+
+    var btn = t.closest("button");
+    if(!btn) return;
+    if(btn.classList.contains("check")){
+      var c2 = t.closest(".card");
+      send("visit_check", {
+        shop: txt(c2 && c2.querySelector("h3")).slice(0,100),
+        pref: txt(c2 && c2.querySelector(".pref")),
+        state: btn.classList.contains("on") ? "off" : "on"
+      });
+      return;
+    }
+    if(btn.id === "more"){ send("load_more", { result_count: resultCount() }); return; }
+    if(btn.id === "reset"){ send("reset_visits", {}); return; }
+    if(btn.classList.contains("chip")){ diff("chip"); return; }
+  }, true);
+
+  document.addEventListener("change", function(e){
+    var t = e.target; if(!t) return;
+    if(t.id === "pref-select"){ diff("select"); return; }
+    if(t.id === "sort"){ send("sort_change", { sort_by: t.value }); return; }
+  }, true);
+
+  /* 検索は入力が落ち着いてから1回だけ送る */
+  var timer;
+  document.addEventListener("input", function(e){
+    if(!e.target || e.target.id !== "q") return;
+    clearTimeout(timer);
+    timer = setTimeout(function(){
+      var v = (e.target.value || "").trim();
+      if(v.length >= 2){ send("search", { search_term: v.slice(0,80), result_count: resultCount() }); }
+    }, 1200);
+  }, true);
+
+  /* お問い合わせフォームの送信（入力内容そのものは送らない） */
+  document.addEventListener("submit", function(e){
+    if(!e.target || e.target.id !== "contact-form") return;
+    var k = $("c-type");
+    send("contact_submit", { kind: k ? (k.value || "") : "" });
+  }, true);
+
+  /* どのセクションまで読まれたか */
+  if(window.IntersectionObserver){
+    var seen = {};
+    var io = new IntersectionObserver(function(list){
+      list.forEach(function(en){
+        var id = en.target.id;
+        if(en.isIntersecting && id && !seen[id]){
+          seen[id] = 1;
+          send("view_section", { section: id });
+        }
+      });
+    }, { threshold: 0.35 });
+    document.querySelectorAll("section[id]").forEach(function(s){ io.observe(s); });
+  }
+})();
+</script>
+<!--GA4-TRACK-END-->
 </body>
 </html>

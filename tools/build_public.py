@@ -9,7 +9,13 @@ Artifact ツールの action:"read" で落としたフレーム込みの完成HT
 公開版(訪問日を出さない・単体で動く完成HTML)を書き出す。
 加工内容は claude/google-sites-publish.md の「公開版は訪問日を出さない」6項目に対応。
 """
-import json, re, sys, datetime, argparse
+import json, re, sys, os, datetime, argparse
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import inject_ga
+
+# GA4 測定ID。--ga-id で上書き可。空文字にすると計測タグなしでビルドする。
+# 注意: CSP への追記も inject_ga 側で自動的に行われる（HEAD_TMPL は素のままでよい）。
+GA_ID = "G-4RX2TGNQPV"
 
 HEAD_TMPL = '''<!doctype html>
 <html lang="ja">
@@ -58,7 +64,7 @@ def extract_json_array(s, marker):
                     return i, j + 1, json.loads(s[i:j+1])
     raise SystemExit("[FAIL] SHOPS配列の終端が見つかりません")
 
-def build(raw, updated):
+def build(raw, updated, ga_id=GA_ID):
     # --- 1. body抜き出し（フレーム込みHTMLから中身だけ取る） ---
     bs = raw.find('<body>')
     be = raw.rfind('</body>')
@@ -124,6 +130,12 @@ def build(raw, updated):
     desc = (f"全国{n_before}軒の電気風呂を、自分の足で回って記録した地図。"
             "都道府県や強さの目安で絞り込み、訪問チェックで訪問率が出ます。")
     html = HEAD_TMPL.format(desc=desc) + body + '</body>\n</html>\n'
+
+    # --- 9. フッターにプライバシーポリシーへの導線 + アクセス解析(GA4)タグ ---
+    html = inject_ga.add_privacy_link(html)
+    if ga_id:
+        html = inject_ga.inject(html, ga_id)   # CSP への追記もここで行われる
+
     stats = {
         'shops': n_before,
         'prefs': len({s['k'] for s in shops}),
@@ -133,6 +145,7 @@ def build(raw, updated):
         'had_visitdate': n_d,
         'updated': updated,
         'bytes': len(html.encode('utf-8')),
+        'ga_id': ga_id or '(なし)',
     }
     return html, stats
 
@@ -140,7 +153,8 @@ if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('src'); ap.add_argument('dst')
     ap.add_argument('--updated', default=datetime.date.today().isoformat())
+    ap.add_argument('--ga-id', default=GA_ID, help='GA4測定ID。空文字で計測タグなし')
     a = ap.parse_args()
-    html, stats = build(open(a.src, encoding='utf-8').read(), a.updated)
+    html, stats = build(open(a.src, encoding='utf-8').read(), a.updated, a.ga_id)
     open(a.dst, 'w', encoding='utf-8').write(html)
     print(json.dumps(stats, ensure_ascii=False, indent=2))
