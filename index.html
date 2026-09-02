@@ -245,18 +245,16 @@ footer p{margin:4px 0}
     <div class="stats">
       <div class="stat"><b id="s-total">–</b><span>掲載軒数</span></div>
       <div class="stat"><b id="s-pref">–</b><span>都道府県</span></div>
-      <div class="stat"><b id="s-max">–</b><span>⚡5（強め）の軒数</span></div>
       <div class="stat"><b id="s-years">–</b><span>入湯した年数</span></div>
-      <div class="stat"><b id="s-closed" style="color:#FF8E76">–</b><span>閉店を確認</span></div>
     </div>
 
     <div class="prog">
       <div class="prog-top">
         <strong><i id="p-done">0</i> / <span id="p-all">0</span></strong>
-        <span>あなたの制覇率 <b id="p-pct" style="color:var(--bolt);font-family:var(--num)">0%</b></span>
+        <span>あなたの訪問率 <b id="p-pct" style="color:var(--bolt);font-family:var(--num)">0%</b></span>
       </div>
       <div class="bar"><i id="p-bar"></i></div>
-      <p class="prog-note">制覇した都道府県 <b id="p-pref" style="color:var(--arc);font-family:var(--num)">0</b> / 47　・　記録はこの端末のブラウザにだけ保存されます　<button id="reset">記録を消す</button></p>
+      <p class="prog-note">訪問した都道府県 <b id="p-pref" style="color:var(--arc);font-family:var(--num)">0</b> / 47　・　記録はこの端末のブラウザにだけ保存されます　<button id="reset">記録を消す</button></p>
     </div>
   </div>
 </header>
@@ -266,8 +264,8 @@ footer p{margin:4px 0}
   <div class="wrap">
     <div id="sample-notice"></div>
     <div class="sec-head">
-      <p class="eyebrow">SEIHA MAP</p>
-      <h2>制覇マップ</h2>
+      <p class="eyebrow">VISITED MAP</p>
+      <h2>訪問マップ</h2>
       <p>行ったところが光ります。都道府県をクリックすると、その県の銭湯だけに絞り込みます。</p>
     </div>
     <div class="maplayout">
@@ -278,7 +276,7 @@ footer p{margin:4px 0}
         <span>掲載数</span>
         <span class="ramp"><i style="background:#182130"></i><i style="background:#20364B"></i><i style="background:#2A5570"></i><i style="background:#3E7E93"></i><i style="background:#6FE3FF"></i></span>
         <span>少 → 多</span>
-        <span style="margin-left:10px;color:var(--bolt)">■ 制覇済みの県は黄色く光ります</span>
+        <span style="margin-left:10px;color:var(--bolt)">■ 訪問済みの県は黄色く光ります</span>
       </div>
     </div>
     <div class="mapstats">
@@ -314,7 +312,6 @@ footer p{margin:4px 0}
       <span class="flabel">営業</span>
       <button class="chip" id="chip-open">閉店済も表示</button>
       <button class="chip" id="chip-closed">閉店済だけ</button>
-      <span class="count" id="closed-note"></span>
     </div>
     <div class="frow">
       <div class="search">
@@ -336,7 +333,7 @@ footer p{margin:4px 0}
     <div class="sec-head">
       <p class="eyebrow">ALL SENTO</p>
       <h2>電気風呂のある銭湯</h2>
-      <p>カードの「行った」を押すと制覇率に反映されます。「地図で開く」でGoogleマップへ。<br>
+      <p>カードの「行った」を押すと訪問率に反映されます。「地図で開く」でGoogleマップへ。<br>
        ⚡は強さを競うためのものではなく、自分に合う強さを選ぶための目安です。</p>
     </div>
     <div class="grid" id="grid"></div>
@@ -507,6 +504,7 @@ footer p{margin:4px 0}
     <p>電気風呂マップ ／ 訪問記録をもとにした個人サイトです。</p>
     <p id="foot-note"></p>
     <p id="closed-foot"></p>
+    <p id="closed-note"></p>
     <p>掲載内容は訪問時点のもので、営業状況・設備は変わることがあります。おでかけ前に各店の最新情報をご確認ください。</p>
   </div>
 </footer>
@@ -632,7 +630,7 @@ function renderMap(){
     p.setAttribute("fill", fill);
     if(state.pref===name) p.setAttribute("class","sel");
     const t = document.createElementNS("http://www.w3.org/2000/svg","title");
-    t.textContent = `${name}　${n}軒${done[name]?`（制覇 ${done[name]}）`:""}`;
+    t.textContent = `${name}　${n}軒${done[name]?`（訪問 ${done[name]}）`:""}`;
     p.appendChild(t);
     p.addEventListener("click",()=>{
       state.pref = state.pref===name ? null : name;
@@ -717,10 +715,8 @@ function buildChips(){
 function init(){
   SHOPS.forEach((s,i)=>{ if(s.i==null) s.i = i; });
   $("#s-total").textContent = SHOPS.length;
-  $("#s-closed").textContent = SHOPS.filter(s=>s.c).length;
   $("#closed-note").textContent = `閉店調査の対象は ${SURVEYED.join("・")} の ${SHOPS.filter(s=>SURVEYED.includes(s.k)).length}軒（${CLOSED_ASOF} 時点）`;
   $("#s-pref").textContent = new Set(SHOPS.map(s=>s.k)).size;
-  $("#s-max").textContent = SHOPS.filter(s=>s.p===maxPower).length;
   $("#s-years").textContent = 10;
   const sel = $("#pref-select");
   sel.innerHTML = '<option value="">都道府県で選ぶ</option>' +
@@ -777,6 +773,7 @@ function spark(){
 }
 init();
 </script>
+
 
 
 
