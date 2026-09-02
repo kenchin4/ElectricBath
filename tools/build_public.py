@@ -16,10 +16,10 @@ HEAD_TMPL = '''<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>電気風呂マップ</title>
+<title>電浴Go!!</title>
 <meta name="description" content="{desc}">
 <meta property="og:type" content="website">
-<meta property="og:title" content="電気風呂マップ">
+<meta property="og:title" content="電浴Go!!">
 <meta property="og:description" content="{desc}">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E">
@@ -120,7 +120,7 @@ def build(raw, updated):
         raise SystemExit("[FAIL] SHOPSに訪問日が残っています")
 
     desc = (f"全国{n_before}軒の電気風呂を、自分の足で回って記録した地図。"
-            "都道府県や強さの目安で絞り込み、訪問チェックで制覇率が出ます。")
+            "都道府県や強さの目安で絞り込み、訪問チェックで訪問率が出ます。")
     html = HEAD_TMPL.format(desc=desc) + body + '</body>\n</html>\n'
     stats = {
         'shops': n_before,
