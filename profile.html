@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="電気風呂鑑定士・団地愛好家「けんちん」のプロフィール。肩書き、著書、訪問実績、メディア出演歴、取材のご依頼窓口。">
+<meta property="og:title" content="電気風呂鑑定士 けんちん">
+<meta property="og:description" content="電気風呂鑑定士・団地愛好家「けんちん」のプロフィール。">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://kenchin4.github.io/ElectricBath/profile.html">
+<title>電気風呂鑑定士 けんちん</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<style>
+  :root{
+    --ink:#0B0B0D;
+    --ink-2:#141519;
+    --ink-3:#1D1F25;
+    --line:#2E3138;
+    --line-2:#3E434C;
+    --paper:#EDEBE2;
+    --paper-dim:#A8A9A5;
+    --paper-faint:#74767C;
+    --volt:#FFE81F;
+    --volt-deep:#C9B300;
+    --tile:#4FA3C4;
+    --tile-deep:#2E6E88;
+    --maxw:920px;
+    --step:clamp(1rem,0.9rem + 0.5vw,1.075rem);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,sans-serif;
+    font-size:var(--step);
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  section{padding:56px 0;border-top:1px solid var(--line)}
+  h1,h2,h3{margin:0;text-wrap:balance;line-height:1.35}
+  a{color:var(--volt);text-decoration:none;border-bottom:1px solid rgba(255,232,31,.35);transition:border-color .18s,color .18s}
+  a:hover{border-bottom-color:var(--volt)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--volt);outline-offset:3px;border-radius:2px}
+  .eyebrow{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--volt);display:flex;align-items:center;gap:10px;margin:0 0 18px;
+  }
+  .eyebrow::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line-2),transparent)}
+  .sec-title{font-family:"Dela Gothic One",system-ui,sans-serif;font-size:clamp(1.25rem,1rem + 1.1vw,1.6rem);font-weight:400;letter-spacing:.01em;margin-bottom:8px}
+  .sec-note{color:var(--paper-dim);font-size:.9rem;margin:0 0 26px}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:clamp(52px,7vw,86px) 0 44px;border-top:none;position:relative;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1fr;gap:30px}
+  .rig{
+    position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;
+    gap:14px;padding:26px 0 30px;
+  }
+  .plate{
+    width:34px;height:104px;border-radius:3px;
+    background:linear-gradient(180deg,#3A3D45,#22242A);
+    border:1px solid var(--line-2);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.10);
+    position:relative;
+  }
+  .plate::after{
+    content:"";position:absolute;inset:7px 8px;
+    background:repeating-linear-gradient(180deg,rgba(255,255,255,.10) 0 1px,transparent 1px 8px);
+  }
+  .arc{position:relative;height:104px}
+  .arc svg{position:absolute;inset:0;width:100%;height:100%}
+  .arc .bolt{stroke:var(--volt);stroke-width:1.6;fill:none;stroke-linecap:round;
+    filter:drop-shadow(0 0 6px rgba(255,232,31,.55));
+    stroke-dasharray:6 10;animation:travel 1.6s linear infinite}
+  .arc .bolt.b2{stroke:var(--tile);opacity:.75;animation-duration:2.3s;animation-direction:reverse}
+  .arc .bolt.b3{opacity:.4;animation-duration:2.9s}
+  @keyframes travel{to{stroke-dashoffset:-160}}
+  .rig-label{
+    position:absolute;left:50%;transform:translateX(-50%);bottom:0;
+    font-family:"JetBrains Mono",monospace;font-size:.62rem;letter-spacing:.2em;color:var(--paper-faint);
+  }
+  .name{
+    font-family:"Dela Gothic One",system-ui,sans-serif;font-weight:400;
+    font-size:clamp(3rem,2rem + 8vw,5.6rem);line-height:1;letter-spacing:.02em;
+    color:var(--paper);margin:0;
+  }
+  .name em{font-style:normal;color:var(--volt);text-shadow:0 0 26px rgba(255,232,31,.28)}
+  .romaji{font-family:"JetBrains Mono",monospace;font-size:.8rem;letter-spacing:.35em;color:var(--paper-faint);margin:14px 0 0}
+  .titles{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0;padding:0;list-style:none}
+  .titles li{
+    font-size:.86rem;font-weight:700;padding:6px 13px;border:1px solid var(--volt);
+    color:var(--volt);border-radius:2px;background:rgba(255,232,31,.06);
+  }
+  .titles li.alt{border-color:var(--tile);color:var(--tile);background:rgba(79,163,196,.07)}
+  .lede{margin:26px 0 0;max-width:60ch;font-size:1.02rem;color:var(--paper)}
+  .lede strong{color:var(--volt);font-weight:700}
+
+  /* ---------- STATS ---------- */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden;margin-top:40px}
+  .stat{background:var(--ink-2);padding:18px 16px}
+  .stat dt{font-family:"JetBrains Mono",monospace;font-size:.62rem;letter-spacing:.16em;color:var(--paper-faint);text-transform:uppercase;margin:0 0 6px}
+  .stat dd{margin:0;font-family:"Dela Gothic One",system-ui,sans-serif;font-size:1.5rem;line-height:1.2;color:var(--volt);font-variant-numeric:tabular-nums}
+  .stat dd span{font-family:"Zen Kaku Gothic New",sans-serif;font-size:.78rem;color:var(--paper-dim);margin-left:5px}
+
+  /* ---------- PROSE ---------- */
+  .prose p{margin:0 0 1.15em;max-width:64ch}
+  .prose p:last-child{margin-bottom:0}
+  .pull{
+    margin:32px 0 0;padding:24px 26px;background:var(--ink-2);
+    border-left:3px solid var(--volt);border-radius:0 3px 3px 0;
+  }
+  .pull p{margin:0;font-size:1.05rem;line-height:1.85}
+  .pull cite{display:block;margin-top:12px;font-style:normal;font-size:.78rem;color:var(--paper-faint);font-family:"JetBrains Mono",monospace;letter-spacing:.08em}
+
+  /* ---------- TIMELINE ---------- */
+  .tl{list-style:none;margin:0;padding:0;display:grid;gap:0}
+  .tl li{display:grid;grid-template-columns:86px 1fr;gap:20px;padding:15px 0;border-bottom:1px dashed var(--line)}
+  .tl li:last-child{border-bottom:none}
+  .tl .yr{font-family:"JetBrains Mono",monospace;font-size:.82rem;color:var(--volt);font-variant-numeric:tabular-nums;padding-top:.25em}
+  .tl .ev{margin:0}
+  .tl .ev b{display:block;font-weight:700}
+  .tl .ev small{color:var(--paper-dim);font-size:.86rem;line-height:1.7;display:block;margin-top:2px}
+
+  /* ---------- BOOKS ---------- */
+  .books{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+  .book{background:var(--ink-2);border:1px solid var(--line);border-radius:3px;padding:20px;display:flex;flex-direction:column;gap:8px}
+  .book .kind{font-family:"JetBrains Mono",monospace;font-size:.6rem;letter-spacing:.18em;color:var(--paper-faint);text-transform:uppercase}
+  .book h3{font-size:1.02rem;font-weight:700;color:var(--paper)}
+  .book .meta{margin:auto 0 0;font-size:.82rem;color:var(--paper-dim);line-height:1.7}
+
+  /* ---------- BARS ---------- */
+  .bars{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+  .bars li{display:grid;grid-template-columns:78px 1fr 58px;align-items:center;gap:12px}
+  .bars .pref{font-size:.88rem;color:var(--paper)}
+  .bars .track{height:9px;background:var(--ink-3);border-radius:99px;overflow:hidden}
+  .bars .fill{display:block;height:100%;background:linear-gradient(90deg,var(--volt-deep),var(--volt));border-radius:99px}
+  .bars .fill.tile{background:linear-gradient(90deg,var(--tile-deep),var(--tile))}
+  .bars .n{font-family:"JetBrains Mono",monospace;font-size:.82rem;text-align:right;color:var(--paper-dim);font-variant-numeric:tabular-nums}
+  .done{margin:22px 0 0;padding:16px 18px;border:1px dashed var(--line-2);border-radius:3px;font-size:.9rem;color:var(--paper-dim)}
+  .done b{color:var(--tile)}
+
+  /* ---------- CHIPS ---------- */
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin:0;padding:0;list-style:none}
+  .chips li{font-size:.83rem;padding:5px 11px;border:1px solid var(--line-2);border-radius:99px;color:var(--paper-dim);background:var(--ink-2)}
+  .chips li.hi{border-color:var(--volt);color:var(--volt)}
+
+  /* ---------- DEFS / LINKS ---------- */
+  .defs{margin:0;display:grid;grid-template-columns:auto 1fr;gap:0 24px}
+  .defs dt{font-size:.82rem;color:var(--paper-faint);font-family:"JetBrains Mono",monospace;letter-spacing:.06em;padding:11px 0;border-bottom:1px solid var(--line);white-space:nowrap}
+  .defs dd{margin:0;padding:11px 0;border-bottom:1px solid var(--line)}
+  .links{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+  /* ---------- CONTACT ---------- */
+  .contact{display:grid;grid-template-columns:1fr auto;gap:26px;align-items:center;background:var(--ink-2);border:1px solid var(--line-2);border-radius:3px;padding:26px 28px}
+  .contact p{margin:0;color:var(--paper-dim);font-size:.92rem;max-width:46ch}
+  .contact p b{color:var(--paper);font-weight:700}
+  .cta{
+    display:inline-flex;align-items:center;gap:10px;white-space:nowrap;
+    background:var(--volt);color:var(--ink);border:1px solid var(--volt);border-bottom-color:var(--volt);
+    font-weight:700;font-size:.95rem;padding:13px 22px;border-radius:2px;
+    box-shadow:0 0 0 rgba(255,232,31,0);transition:box-shadow .2s,transform .12s;
+  }
+  .cta:hover{box-shadow:0 0 22px rgba(255,232,31,.35);border-bottom-color:var(--volt)}
+  .cta:active{transform:translateY(1px)}
+  .cta span{font-family:"JetBrains Mono",monospace;font-size:1rem}
+  .contact-note{margin:14px 0 0;font-size:.8rem;color:var(--paper-faint)}
+  @media (max-width:640px){.contact{grid-template-columns:1fr;gap:18px}.cta{justify-content:center}}
+  .lnk{display:block;background:var(--ink-2);border:1px solid var(--line);border-radius:3px;padding:16px 18px;color:var(--paper);border-bottom:1px solid var(--line)}
+  .lnk:hover{border-color:var(--volt)}
+  .lnk b{display:block;font-size:.96rem;color:var(--volt)}
+  .lnk small{display:block;color:var(--paper-dim);font-size:.78rem;margin-top:3px;font-family:"JetBrains Mono",monospace;word-break:break-all}
+  footer{padding:38px 0 60px;border-top:1px solid var(--line);color:var(--paper-faint);font-size:.78rem;font-family:"JetBrains Mono",monospace;letter-spacing:.06em}
+
+  @media (max-width:560px){
+    .tl li{grid-template-columns:1fr;gap:4px}
+    .bars li{grid-template-columns:66px 1fr 46px}
+    .defs{grid-template-columns:1fr;gap:0}
+    .defs dt{border-bottom:none;padding-bottom:0}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .arc .bolt{animation:none;stroke-dasharray:none;opacity:.5}
+    *{transition:none!important}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Profile</p>
+        <h1 class="name">けん<em>ちん</em></h1>
+        <p class="romaji">K E N C H I N</p>
+        <ul class="titles">
+          <li>電気風呂鑑定士</li>
+          <li>団地愛好家／団地ソムリエ</li>
+          <li class="alt">趣味づくり職人</li>
+        </ul>
+        <p class="lede">
+          1980年生まれ、大阪。会社勤めのかたわら、<strong>団地をカルチャーとして捉え</strong>、
+          団地界隈の外へその魅力を発信しています。2017年からは全国の銭湯の電気風呂を訪ね歩き、
+          訪問数は1,000か所以上。団地も電気風呂も、根っこは同じところにあります。
+        </p>
+      </div>
+
+      <div class="rig" aria-hidden="true">
+        <div class="plate"></div>
+        <div class="arc">
+          <svg viewBox="0 0 400 104" preserveAspectRatio="none" role="presentation">
+            <path class="bolt" d="M0 34 L52 44 L104 28 L156 50 L208 30 L260 48 L312 32 L364 46 L400 36"></path>
+            <path class="bolt b2" d="M0 60 L46 50 L98 68 L150 52 L202 70 L254 54 L306 68 L358 52 L400 62"></path>
+            <path class="bolt b3" d="M0 84 L60 74 L120 88 L180 72 L240 86 L300 74 L360 88 L400 78"></path>
+          </svg>
+          <span class="rig-label">ELECTRODE ⇄ ELECTRODE</span>
+        </div>
+        <div class="plate"></div>
+      </div>
+
+      <dl class="stats">
+        <div class="stat"><dt>Danchi since</dt><dd>2003<span>年〜</span></dd></div>
+        <div class="stat"><dt>Electric bath</dt><dd>2017<span>年〜</span></dd></div>
+        <div class="stat"><dt>訪問した電気風呂</dt><dd>1,000<span>か所以上</span></dd></div>
+        <div class="stat"><dt>著書・寄稿</dt><dd>4<span>冊</span></dd></div>
+      </dl>
+    </div>
+  </header>
+
+  <section>
+    <p class="eyebrow">About</p>
+    <h2 class="sec-title">団地から、すべてがはじまっている</h2>
+    <div class="prose">
+      <p>
+        団地を人に薦めはじめて20年あまり。公団住宅（現UR）に興味を持ち、引っ越しをきっかけに研究を深めました。
+        心斎橋から徒歩10分の団地に暮らし、昭和37年から住み続ける住民が半数以上という環境も経験しています。
+        得意分野は、下層に店舗、上層に住宅が載る「ゲタバキ住宅」＝市街地住宅タイプの団地。
+      </p>
+      <p>
+        団地愛好家集団<b>「チーム4.5畳」</b>のメンバーとして、「団地は日本の原風景だ」「団地をARTに」を合言葉に
+        啓蒙活動を続けています。UR都市機構の公式団地ツアーコンダクターを務めるほか、新聞・Webメディアへの寄稿、
+        カルチャー講座「団地学」入門の講師など、団地の入口をつくる仕事が中心です。
+      </p>
+      <p>
+        ハンバーガーチェーン、道路、電車、そして電気風呂。一見バラバラに見える興味も、たどっていくと必ず団地に戻ってきます。
+        深く掘ることは大切だけれど、それがすべてではない。大きな視野で周りから見ることも同じくらい大事だと思っています。
+      </p>
+      <div class="pull">
+        <p>すべての道は団地に通ずる。</p>
+        <cite>— 趣味の根幹には、いつも団地がある</cite>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Why electric bath</p>
+    <h2 class="sec-title">電気風呂と団地は、おおいに関係あり</h2>
+    <p class="sec-note">「団地マニアじゃなかったの？」という問いへの、いちばん正確な答え。</p>
+    <div class="prose">
+      <p>
+        電気風呂は昭和30年代、名古屋・大阪・京都の銭湯にはすでに設置されていた一方、関東・東北・四国などにはあまり普及していませんでした。
+        流れを変えたのが団地です。日本住宅公団が浴槽を開発し、団地の量産とともに家風呂が爆発的に広まった結果、銭湯の客足は遠のきます。
+        家風呂にはないプラス要素が要る——そこでジェットバス、サウナ、そして<b>電気風呂</b>が全国へ広がっていきました。
+      </p>
+      <p>
+        日本住宅公団がこの世になく、家風呂が量産されていなかったら。電気風呂は全国に広がっていなかったのかもしれません。
+        団地と関係があるかもしれない、と考えたからこそ出会えた事実です。
+      </p>
+      <p>
+        個人的な入口はもっと切実で、25歳のときの腰痛でした。整骨院の電気治療ではなかなか良くならず、銭湯の電気風呂に毎日通ったところ、
+        2週間ほどでコルセットが外せるまでに回復。それから約10年は「銭湯の設備のひとつ」として楽しみ、
+        50軒ほど回ったころに<b>銭湯ごとに電気の感じ方がまるで違う</b>ことに気づいて、調査がはじまりました。
+        機種によって電極板の形も、看板も、体感もすべて異なります。
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Fieldwork</p>
+    <h2 class="sec-title">訪問した電気風呂</h2>
+    <p class="sec-note">2017年6月から継続中。数字は軒数（銭湯電気保養協会調べ）。強さを競うものではなく、一軒ずつ違う体感を記録するための調査です。</p>
+    <ul class="bars">
+      <li><span class="pref">大阪府</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="n">325</span></li>
+      <li><span class="pref">東京都</span><span class="track"><span class="fill" style="width:53%"></span></span><span class="n">172</span></li>
+      <li><span class="pref">神奈川県</span><span class="track"><span class="fill" style="width:18%"></span></span><span class="n">59</span></li>
+      <li><span class="pref">山梨県</span><span class="track"><span class="fill tile" style="width:4%"></span></span><span class="n">2</span></li>
+    </ul>
+    <p class="done">
+      このほか <b>京都府・兵庫県・滋賀県・和歌山県</b> は全電浴を達成。全国では1,000か所以上を訪問しています。
+    </p>
+  </section>
+
+  <section>
+    <p class="eyebrow">Books</p>
+    <h2 class="sec-title">著書・寄稿</h2>
+    <div class="books">
+      <article class="book">
+        <span class="kind">著書 / 2019</span>
+        <h3>Electric Bath Handbook 電気風呂御案内200</h3>
+        <p class="meta">全国の電気風呂200件を、電極板の形や体感とともに案内するハンドブック。</p>
+      </article>
+      <article class="book">
+        <span class="kind">著書 / 2022</span>
+        <h3>電浴GO!!</h3>
+        <p class="meta">電気風呂をめぐる旅の記録。「電浴」という言葉とともに。</p>
+      </article>
+      <article class="book">
+        <span class="kind">著書 / ブックレット</span>
+        <h3>ゲタバキ団地観覧会</h3>
+        <p class="meta">八画出版部。市街地住宅タイプ＝ゲタバキ団地を読み解く一冊。</p>
+      </article>
+      <article class="book">
+        <span class="kind">寄稿 / 2021</span>
+        <h3>銭湯文化的大解剖！</h3>
+        <p class="meta">神戸新聞総合出版センター。銭湯文化の一章を担当。</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Activities</p>
+    <h2 class="sec-title">所属・肩書き</h2>
+    <dl class="defs">
+      <dt>チーム4.5畳</dt>
+      <dd>団地愛好家集団。7人のメンバーが月替りで連載「週刊4.5畳」（UR都市機構「うちまちだんち」）を執筆。</dd>
+      <dt>銭湯電気保養協会</dt>
+      <dd>副会長。電気風呂好きがゆるく集まり、イベント開催や写真集頒布で電気風呂の魅力を伝えるグループ。</dd>
+      <dt>おしどり浴場組合</dt>
+      <dd>2020年、お風呂仲間と結成。ZINE『銭湯生活』の制作、作品展示やグッズ販売も。</dd>
+      <dt>UR都市機構</dt>
+      <dd>公式団地ツアーコンダクター。MUJI×URの設計者と団地を歩く連載「団地ちょっとレポート」にも出演。</dd>
+      <dt>エントランス</dt>
+      <dd>カルチャー講座「『団地学』入門」講師（神戸）。</dd>
+      <dt>BOWLING No.9</dt>
+      <dd>大阪のバンド。トランペット担当。</dd>
+      <dt>プロジェクトD</dt>
+      <dd>団地をめぐる活動グループ。</dd>
+    </dl>
+  </section>
+
+  <section>
+    <p class="eyebrow">Media</p>
+    <h2 class="sec-title">メディア出演・掲載</h2>
+    <p class="sec-note">テレビ・ラジオ・新聞・雑誌ほか。</p>
+    <ul class="chips">
+      <li class="hi">TBSテレビ『マツコの知らない世界』</li>
+      <li>MBSテレビ</li>
+      <li>KBS京都テレビ</li>
+      <li>J-WAVE</li>
+      <li>TBSラジオ</li>
+      <li>ABCラジオ</li>
+      <li>日本経済新聞</li>
+      <li>毎日新聞</li>
+      <li>東京スポーツ</li>
+      <li>週刊モーニング</li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="eyebrow">Talks &amp; writing</p>
+    <h2 class="sec-title">講演・連載・イベント</h2>
+    <ul class="tl">
+      <li><span class="yr">連載</span><p class="ev"><b>週刊4.5畳</b><small>UR都市機構「うちまちだんち」。チーム4.5畳のメンバーが月替りで執筆。</small></p></li>
+      <li><span class="yr">連載</span><p class="ev"><b>団地ちょっとレポート（MUJI×UR）</b><small>MUJI HOUSEの設計者とともに武庫川団地・芦屋浜団地・藤沢台第3／第5団地などを歩くお散歩レポート。</small></p></li>
+      <li><span class="yr">講座</span><p class="ev"><b>「団地学」入門</b><small>カルチャー講座＠神戸。団地の見方を一から。</small></p></li>
+      <li><span class="yr">登壇</span><p class="ev"><b>MUJI×UR トークイベント「団地のもったいない場所どないする？」</b><small>意匠遊具、住棟壁画「風船うさぎ」、吉原治良のタイル・アート、関西だけの「ぼんてん」——共用部にかくれた“おもろい場所”を紹介。</small></p></li>
+      <li><span class="yr">登壇</span><p class="ev"><b>都市のラス・メニーナス 第26回</b><small>5枚の写真から語る電気風呂文化。メーカーの違い、地域差、設置状況について。</small></p></li>
+      <li><span class="yr">出展</span><p class="ev"><b>電気風呂レセプション／マニアフェスタ／電気風呂ナイト名古屋 ほか</b><small>イベント出展・トーク多数。</small></p></li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <p class="eyebrow">Contact</p>
+    <h2 class="sec-title">取材・講演・執筆のご依頼</h2>
+    <p class="sec-note">メディア取材、イベント登壇、原稿執筆、写真の使用など。フォームからお問い合わせください。</p>
+    <div class="contact">
+      <p>
+        <b>取材対応問合せフォーム</b>でお受けしています。お問い合わせの種類、お名前、媒体名・ご所属、
+        返信先メールアドレス、ご希望の回答期限、お問い合わせ内容をご記入ください。
+      </p>
+      <a class="cta" href="contact.html">
+        <span>⚡</span>取材対応問合せフォームへ
+      </a>
+    </div>
+    <p class="contact-note">※ 内容によっては回答までお時間をいただく場合があります。</p>
+  </section>
+
+  <section>
+    <p class="eyebrow">Links</p>
+    <h2 class="sec-title">リンク</h2>
+    <div class="links">
+      <a class="lnk" href="https://denkiburo.jimdofree.com/" target="_blank" rel="noopener">
+        <b>銭湯電気保養協会</b><small>denkiburo.jimdofree.com</small>
+      </a>
+      <a class="lnk" href="https://x.com/kenchin" target="_blank" rel="noopener">
+        <b>X（旧Twitter）@kenchin</b><small>x.com/kenchin</small>
+      </a>
+      <a class="lnk" href="index.html">
+        <b>電気風呂マップ</b><small>kenchin4.github.io/ElectricBath/</small>
+      </a>
+      <a class="lnk" href="https://uchi-machi-danchi.ur-net.go.jp/" target="_blank" rel="noopener">
+        <b>うちまちだんち／週刊4.5畳</b><small>uchi-machi-danchi.ur-net.go.jp</small>
+      </a>
+      <a class="lnk" href="https://house.muji.com/life/clmn/mujiur-report/" target="_blank" rel="noopener">
+        <b>MUJI×UR 団地ちょっとレポート</b><small>house.muji.com</small>
+      </a>
+      <a class="lnk" href="https://en-trans.net/lecturer/lecturer0037/" target="_blank" rel="noopener">
+        <b>エントランス 講師ページ</b><small>en-trans.net</small>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    KENCHIN — 電気風呂鑑定士 / 団地愛好家　　ご依頼は <a href="contact.html">取材対応問合せフォーム</a> から。
+  </footer>
+
+</div>
+
+</body>
+</html>
