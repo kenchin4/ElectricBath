@@ -233,26 +233,6 @@ footer p{margin:4px 0}
   *{animation:none!important;transition:none!important}
 }
 :focus-visible{outline:2px solid var(--arc);outline-offset:2px}
-/* ---------- CONTACT ---------- */
-.contact-grid{display:grid;grid-template-columns:.9fr 1.3fr;gap:32px;align-items:start;margin-top:8px}
-.contact-info ul{margin:10px 0 0;padding-left:1.1em;color:var(--mist);font-size:13.5px;line-height:1.9}
-.contact-info h3{margin:0;font-size:15px;color:var(--steam)}
-.form-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px 22px 20px;display:flex;flex-direction:column;gap:14px}
-.form-card .field{display:flex;flex-direction:column;gap:6px}
-.form-card label{font-size:12.5px;color:var(--mist)}
-.form-card .req{color:var(--yu);font-size:11px;border:1px solid rgba(255,75,46,.4);border-radius:999px;padding:1px 7px;margin-left:4px}
-.form-card input[type=text],.form-card input[type=email],.form-card textarea,.form-card select.chip{
-  width:100%;background:#101720;border:1px solid var(--line);border-radius:10px;
-  padding:9px 12px;color:var(--steam);font-family:inherit;font-size:14px;outline:none}
-.form-card select.chip{cursor:pointer}
-.form-card input:focus,.form-card textarea:focus,.form-card select:focus{border-color:var(--arc)}
-.form-card textarea{resize:vertical;min-height:110px;line-height:1.6}
-.form-status{min-height:18px;font-size:13px;margin:0}
-.form-status.err{color:var(--yu)}
-.form-status.ok{color:var(--arc)}
-.form-actions{display:flex}
-.form-actions .chip{padding:10px 24px;font-size:14px;border:none;cursor:pointer}
-@media(max-width:820px){.contact-grid{grid-template-columns:1fr}}
 </style>
 
 <header class="hero">
@@ -520,112 +500,12 @@ footer p{margin:4px 0}
     <p class="source">出典：けんちん推奨「電気風呂 入浴手順」／銭湯電気保養協会 denkiburo.jimdofree.com</p>
   </section>
 
-<section id="contact">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow">PRESS / CONTACT</p>
-      <h2>取材・お問い合わせ</h2>
-      <p>取材のご依頼、掲載店舗の情報の訂正・ご提供、その他のお問い合わせはこちらから。送信すると、内容が入力された状態でお使いのメールソフトの下書きが開きます。そのまま送信してください。</p>
-    </div>
-    <div class="contact-grid">
-      <div class="contact-info">
-        <h3>ご依頼・ご相談の例</h3>
-        <ul>
-          <li>メディア・Webサイトからの取材依頼</li>
-          <li>掲載店舗の情報の誤り・閉店情報のご連絡</li>
-          <li>その他、電浴Go!!に関するお問い合わせ</li>
-        </ul>
-        <p class="hint">直接メールする場合は <a href="mailto:danchibar@gmail.com">danchibar@gmail.com</a> 宛にお願いします。</p>
-      </div>
-      <form id="contact-form" class="form-card" novalidate>
-        <div class="field">
-          <label for="c-type">お問い合わせの種類 <span class="req">必須</span></label>
-          <select id="c-type" class="chip" required>
-            <option value="取材のご依頼">取材のご依頼</option>
-            <option value="掲載情報の訂正・提供">掲載情報の訂正・提供</option>
-            <option value="その他のお問い合わせ">その他のお問い合わせ</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="c-name">お名前 <span class="req">必須</span></label>
-          <input id="c-name" type="text" autocomplete="name" required>
-        </div>
-        <div class="field">
-          <label for="c-org">媒体名・ご所属（任意）</label>
-          <input id="c-org" type="text" autocomplete="organization">
-        </div>
-        <div class="field">
-          <label for="c-email">返信先メールアドレス <span class="req">必須</span></label>
-          <input id="c-email" type="email" autocomplete="email" required>
-        </div>
-        <div class="field">
-          <label for="c-deadline">ご希望の回答期限（任意）</label>
-          <input id="c-deadline" type="text" placeholder="例：2026/09/10まで">
-        </div>
-        <div class="field">
-          <label for="c-msg">お問い合わせ内容 <span class="req">必須</span></label>
-          <textarea id="c-msg" rows="6" required placeholder="取材の趣旨、掲載希望時期、確認事項などをご記入ください。"></textarea>
-        </div>
-        <p id="c-status" class="form-status" role="status" aria-live="polite"></p>
-        <div class="form-actions">
-          <button type="submit" class="chip on" id="c-submit">メールで送信する</button>
-        </div>
-        <p class="hint">送信ボタンを押すとお使いのメールソフトが起動します。起動しない場合は、上記アドレス宛に直接メールをお送りください。</p>
-      </form>
-    </div>
-  </div>
-</section>
-
-<script>
-(function(){
-  var form=document.getElementById('contact-form');
-  if(!form)return;
-  var status=document.getElementById('c-status');
-  var TO='danchibar@gmail.com';
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var type=document.getElementById('c-type').value;
-    var name=document.getElementById('c-name').value.trim();
-    var org=document.getElementById('c-org').value.trim();
-    var email=document.getElementById('c-email').value.trim();
-    var deadline=document.getElementById('c-deadline').value.trim();
-    var msg=document.getElementById('c-msg').value.trim();
-    if(!name||!email||!msg){
-      status.textContent='お名前・メールアドレス・お問い合わせ内容は必須です。';
-      status.className='form-status err';
-      return;
-    }
-    var emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if(!emailOk){
-      status.textContent='メールアドレスの形式をご確認ください。';
-      status.className='form-status err';
-      return;
-    }
-    var subject='【電浴Go!!】'+type+'（'+name+'様）';
-    var bodyLines=[
-      '種別：'+type,
-      'お名前：'+name,
-      '媒体名・ご所属：'+(org||'（未記入）'),
-      '返信先メールアドレス：'+email,
-      'ご希望の回答期限：'+(deadline||'（指定なし）'),
-      '',
-      'お問い合わせ内容：',
-      msg
-    ];
-    var body=bodyLines.join('\n');
-    var href='mailto:'+TO+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
-    status.textContent='メールソフトを起動しています…起動しない場合は '+TO+' 宛に直接お送りください。';
-    status.className='form-status ok';
-    window.location.href=href;
-  });
-})();
-</script>
 </main>
 
 <footer>
   <div class="wrap">
     <p>電気風呂マップ ／ 訪問記録をもとにした個人サイトです。</p>
-    <p><a href="#contact" style="color:var(--arc);text-decoration:none;border-bottom:1px solid rgba(111,227,255,.4)">取材・掲載のお問い合わせはこちら →</a></p>
+    <p><a href="https://kenchin4.github.io/ElectricBath/contact.html" target="_blank" rel="noopener" style="color:var(--arc);text-decoration:none;border-bottom:1px solid rgba(111,227,255,.4)">取材・掲載のお問い合わせはこちら →</a></p>
     <p id="foot-note"></p>
     <p id="closed-foot"></p>
     <p id="closed-note"></p>
@@ -897,6 +777,7 @@ function spark(){
 }
 init();
 </script>
+
 
 
 
