@@ -16,6 +16,8 @@ HEAD_TMPL = '''<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>電浴Go!!</title>
 <meta name="description" content="{desc}">
 <meta property="og:type" content="website">
@@ -81,7 +83,7 @@ def build(raw, updated):
 
     # --- 3. カードの訪問日行を削除 ---
     body = sub1(body,
-        '''     ${s.d?`<div class="visitdate">入湯 ${esc(s.d)}${s.v?` ・ ${s.v}回`:""}</div>`:""}\n''',
+        '''     ${s.d?`<div class="visitdate">入湯 ${esc(s.d)}${s.v?` ・ ${esc(s.v)}回`:""}</div>`:""}\n''',
         '', 'カードの訪問日行')
 
     # --- 4. .visitdate の CSS を削除 ---

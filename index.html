@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>電浴Go!!</title>
 <meta name="description" content="全国1146軒の電気風呂を、自分の足で回って記録した地図。都道府県や強さの目安で絞り込み、訪問チェックで訪問率が出ます。">
 <meta property="og:type" content="website">
@@ -544,7 +546,7 @@ const maxPower = Math.max(1, ...SHOPS.map(s=>s.p||0));
 /* ---------- helpers ---------- */
 const $ = s => document.querySelector(s);
 const el = (t,c,h)=>{const e=document.createElement(t); if(c)e.className=c; if(h!=null)e.innerHTML=h; return e;};
-const esc = s => String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const esc = s => String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function level(p){ if(!p) return 0; return Math.max(1, Math.min(5, Math.round(p/maxPower*5))); }
 function boltRow(p){
   if(p===0) return '<span class="rest-tag">休止中</span>';

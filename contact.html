@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>取材・お問い合わせ | 電浴Go!!</title>
 <meta name="description" content="電浴Go!!（全国電気風呂データベース）への取材のご依頼、掲載情報の訂正・ご提供、その他のお問い合わせはこちらから。">
 <meta name="robots" content="noindex">
@@ -105,7 +107,7 @@ footer a{color:var(--arc)}
         <li>掲載店舗の情報の誤り・閉店情報のご連絡</li>
         <li>その他、電浴Go!!に関するお問い合わせ</li>
       </ul>
-      <p class="hint">直接メールする場合は <a href="mailto:danchibar@gmail.com">danchibar@gmail.com</a> 宛にお願いします。</p>
+      <p class="hint">直接メールする場合は <a id="c-mailto" href="#">こちらのアドレス</a> 宛にお願いします。</p>
     </div>
 
     <form id="contact-form" class="form-card" novalidate>
@@ -157,7 +159,10 @@ footer a{color:var(--arc)}
   var form=document.getElementById('contact-form');
   if(!form)return;
   var status=document.getElementById('c-status');
-  var TO='danchibar@gmail.com';
+  /* スパム収集ボット対策: メールアドレスはソースに平文で置かず、実行時に組み立てる */
+  var TO=['danchibar',String.fromCharCode(64),'gmail',String.fromCharCode(46),'com'].join('');
+  var mailLink=document.getElementById('c-mailto');
+  if(mailLink){ mailLink.href='mailto:'+TO; mailLink.textContent=TO; }
   form.addEventListener('submit',function(e){
     e.preventDefault();
     var type=document.getElementById('c-type').value;
