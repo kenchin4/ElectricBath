@@ -8,6 +8,8 @@
 <meta property="og:description" content="電気風呂鑑定士・団地愛好家「けんちん」のプロフィール。">
 <meta property="og:type" content="profile">
 <meta property="og:url" content="https://kenchin4.github.io/ElectricBath/profile.html">
+<meta property="og:image" content="https://kenchin4.github.io/ElectricBath/kenchin-icon.jpg">
+<link rel="icon" href="kenchin-icon.jpg">
 <title>電気風呂鑑定士 けんちん</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -83,6 +85,17 @@
   .rig-label{
     position:absolute;left:50%;transform:translateX(-50%);bottom:0;
     font-family:"JetBrains Mono",monospace;font-size:.62rem;letter-spacing:.2em;color:var(--paper-faint);
+  }
+  .idcard{display:flex;align-items:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap}
+  .idcard-name{min-width:0}
+  .avatar{
+    flex:0 0 auto;width:clamp(96px,14vw,132px);aspect-ratio:1;border-radius:50%;
+    padding:3px;background:linear-gradient(140deg,var(--volt),var(--volt-deep) 55%,var(--tile));
+    box-shadow:0 0 28px rgba(255,232,31,.18);
+  }
+  .avatar img{
+    width:100%;height:100%;border-radius:50%;display:block;object-fit:cover;
+    background:var(--ink-2);border:2px solid var(--ink);
   }
   .name{
     font-family:"Dela Gothic One",system-ui,sans-serif;font-weight:400;
@@ -171,9 +184,9 @@
   @media (max-width:640px){.contact{grid-template-columns:1fr;gap:18px}.cta{justify-content:center}}
   .lnk{display:block;background:var(--ink-2);border:1px solid var(--line);border-radius:3px;padding:16px 18px;color:var(--paper);border-bottom:1px solid var(--line)}
   .lnk:hover{border-color:var(--volt)}
-  .lnk b{display:flex;align-items:center;gap:8px}
   .xmark{flex:0 0 auto;width:1em;height:1em;fill:currentColor;display:block}
-  .lnk b{display:block;font-size:.96rem;color:var(--volt)}
+  .lnk b .sub{font-weight:400;font-size:.78rem;color:var(--paper-dim)}
+  .lnk b{display:flex;align-items:center;gap:8px;font-size:.96rem;color:var(--volt)}
   .lnk small{display:block;color:var(--paper-dim);font-size:.78rem;margin-top:3px;font-family:"JetBrains Mono",monospace;word-break:break-all}
   footer{padding:38px 0 60px;border-top:1px solid var(--line);color:var(--paper-faint);font-size:.78rem;font-family:"JetBrains Mono",monospace;letter-spacing:.06em}
 
@@ -196,8 +209,15 @@
     <div class="hero-grid">
       <div>
         <p class="eyebrow">Profile</p>
-        <h1 class="name">けん<em>ちん</em></h1>
-        <p class="romaji">K E N C H I N</p>
+        <div class="idcard">
+          <div class="avatar">
+            <img src="kenchin-icon.jpg" alt="けんちんの似顔絵アイコン" width="400" height="400" loading="eager" decoding="async">
+          </div>
+          <div class="idcard-name">
+            <h1 class="name">けん<em>ちん</em></h1>
+            <p class="romaji">K E N C H I N</p>
+          </div>
+        </div>
         <ul class="titles">
           <li>電気風呂鑑定士</li>
           <li>団地愛好家／団地ソムリエ</li>
@@ -398,7 +418,7 @@
         <b>銭湯電気保養協会</b><small>denkiburo.jimdofree.com</small>
       </a>
       <a class="lnk" href="https://x.com/kenchin" target="_blank" rel="noopener">
-        <b><svg class="xmark" viewBox="0 0 24 24" aria-hidden="true" role="presentation"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X（旧Twitter）@kenchin</b><small>x.com/kenchin</small>
+        <b><svg class="xmark" viewBox="0 0 24 24" aria-hidden="true" role="presentation"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@kenchin<span class="sub">（旧Twitter）</span></b><small>x.com/kenchin</small>
       </a>
       <a class="lnk" href="index.html">
         <b>電気風呂マップ</b><small>kenchin4.github.io/ElectricBath/</small>
