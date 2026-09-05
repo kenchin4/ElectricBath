@@ -12,6 +12,7 @@ Artifact ツールの action:"read" で落としたフレーム込みの完成HT
 import json, re, sys, os, datetime, argparse
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import inject_ga
+import inject_seo
 
 # GA4 測定ID。--ga-id で上書き可。空文字にすると計測タグなしでビルドする。
 # 注意: CSP への追記も inject_ga 側で自動的に行われる（HEAD_TMPL は素のままでよい）。
@@ -130,15 +131,20 @@ def build(raw, updated, ga_id=GA_ID):
     desc = (f"全国{n_before}軒の電気風呂を、自分の足で回って記録した地図。"
             "都道府県や強さの目安で絞り込み、訪問チェックで訪問率が出ます。")
     html = HEAD_TMPL.format(desc=desc) + body + '</body>\n</html>\n'
+    n_prefs = len({s['k'] for s in shops})
 
     # --- 9. フッターにプライバシーポリシーへの導線 + アクセス解析(GA4)タグ ---
     html = inject_ga.add_privacy_link(html)
     if ga_id:
         html = inject_ga.inject(html, ga_id)   # CSP への追記もここで行われる
 
+    # --- 10. 検索エンジン向けメタ情報（title / description / canonical / OGP / JSON-LD） ---
+    # HEAD_TMPL の title / description / og:* はここで上書きされる（inject_seo が唯一の定義元）
+    html = inject_seo.inject(html, 'index.html', shops=n_before, prefs=n_prefs, updated=updated)
+
     stats = {
         'shops': n_before,
-        'prefs': len({s['k'] for s in shops}),
+        'prefs': n_prefs,
         'closed': sum(1 for s in shops if s.get('c')),
         'paused_x': sum(1 for s in shops if s.get('cx')),
         'unclear': sum(1 for s in shops if s.get('cw')),
@@ -157,4 +163,6 @@ if __name__ == '__main__':
     a = ap.parse_args()
     html, stats = build(open(a.src, encoding='utf-8').read(), a.updated, a.ga_id)
     open(a.dst, 'w', encoding='utf-8').write(html)
+    # sitemap.xml / robots.txt を index.html と同じ場所に書く（lastmod は --updated）
+    stats['sitemap'] = inject_seo.write_sitemap(os.path.dirname(os.path.abspath(a.dst)) , a.updated)
     print(json.dumps(stats, ensure_ascii=False, indent=2))

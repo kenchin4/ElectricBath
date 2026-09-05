@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /tools/
+
+Sitemap: https://kenchin4.github.io/ElectricBath/sitemap.xml
