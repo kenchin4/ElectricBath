@@ -1,0 +1,22 @@
+{
+  "name": "電浴Go!!",
+  "short_name": "電浴Go!!",
+  "description": "全国の電気風呂を、自分の足で回って記録した地図。",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0B0D12",
+  "theme_color": "#0B0D12",
+  "icons": [
+    {
+      "src": "kenchin-icon.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "kenchin-icon.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

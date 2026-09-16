@@ -23,8 +23,11 @@ HEAD_TMPL = '''<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; form-action 'none'; base-uri 'none'; manifest-src 'self'; worker-src 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#0B0D12">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="kenchin-icon.jpg">
 <title>電浴Go!!</title>
 <meta name="description" content="{desc}">
 <meta property="og:type" content="website">
