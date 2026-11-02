@@ -59,6 +59,28 @@ PAGES = {
 }
 
 
+# AI学習用クローラーのお断り（2026-11-03 本人指示。AI検索・通常検索は許可）
+# 注意: GitHub Pages のプロジェクトサイトでは /ElectricBath/robots.txt はクローラーに読まれない。
+# 効くのは kenchin4.github.io リポジトリ直下の robots.txt（同じ内容を置いている）。
+AI_BLOCK = """# AIの学習用データ収集はお断りします（No AI training）
+# 通常の検索エンジン・AI検索（回答時の参照・リンク）は許可しています
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: anthropic-ai
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: meta-externalagent
+User-agent: CCBot
+User-agent: Amazonbot
+User-agent: Bytespider
+User-agent: MistralAI-Training
+User-agent: AI2Bot
+User-agent: cohere-training-data-crawler
+User-agent: omgili
+User-agent: omgilibot
+Disallow: /
+"""
+
 def _esc(s):
     return (s.replace("&", "&amp;").replace('"', "&quot;")
              .replace("<", "&lt;").replace(">", "&gt;"))
@@ -191,7 +213,7 @@ def write_sitemap(outdir, updated=None):
            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
            + "\n".join(urls) + "\n</urlset>\n")
     open(os.path.join(outdir, "sitemap.xml"), "w", encoding="utf-8").write(xml)
-    robots = ("User-agent: *\nAllow: /\nDisallow: /tools/\n\n"
+    robots = (AI_BLOCK + "\nUser-agent: *\nAllow: /\nDisallow: /tools/\n\n"
               f"Sitemap: {SITE}sitemap.xml\n")
     open(os.path.join(outdir, "robots.txt"), "w", encoding="utf-8").write(robots)
     return [c["url"] for c in PAGES.values() if c["index"]]
